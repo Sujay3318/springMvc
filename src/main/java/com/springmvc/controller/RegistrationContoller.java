@@ -12,19 +12,10 @@ import com.springmvc.model.User;
 import com.springmvc.service.UserService;
 import com.springmvc.utility.PasswordGenerator;
 
-/*
+/**
  * 
- * Most of the times, we use HQL for querying the database and getting the results. HQL is not preferred way for updating or deleting values because then we need to take care of any associations between tables.
-
-Hibernate Criteria API provides object oriented approach for querying the database and getting results. We can’t use Criteria in Hibernate to run update or delete queries or any DDL statements. Hibernate Criteria query is only used to fetch the results from the database using object oriented approach.
-
-For my Hibernate criteria example, I will use the same setup as in my HQL Example and show you how to use Criteria in Hibernate for querying databases.
-
-Some of the common usage of Hibernate Criteria API are;
- * 
- * 
- * 
- * 
+ * @author User
+ *
  */
 @RestController
 @RequestMapping(value = "/user")
@@ -33,6 +24,10 @@ public class RegistrationContoller {
 	@Autowired
 	UserService userService;
 
+	/**
+	 * 
+	 * @return
+	 */
 	@GetMapping("/register")
 	public ModelAndView loadLoginPage() {
 		ModelAndView model = new ModelAndView();
@@ -42,20 +37,23 @@ public class RegistrationContoller {
 		return model;
 	}
 
+	/**
+	 * 
+	 * @param user
+	 * @return
+	 */
 	@PostMapping("/add")
 	public ModelAndView createUser(@ModelAttribute User user) {
 		String response = userService.create(user);
+		ModelAndView model = new ModelAndView();
 		if (response == null) {
-			System.out.println(" register page again");
-			ModelAndView model = new ModelAndView();
-			User user2 = new User();
-			model.addObject("user", user2);
+			System.out.println("mail id alreday present due to sql constarint of unique  "
+					+ "register the page with new email id ");
+
 			model.setViewName("alreadyExistemail");
 			return model;
 		} else {
-			System.out.println("New page as data get stored in db");
-			ModelAndView model = new ModelAndView();
-			model.addObject("user", user);
+			System.out.println(" Data get stored in db ");
 			model.setViewName("registrationsuccessful");
 			return model;
 		}

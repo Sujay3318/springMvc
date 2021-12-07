@@ -2,8 +2,7 @@
 <%@ page language="java" contentType="text/html"%>
 
 <html>
-<marquee width="100%" behavior="scroll" bgcolor="#00ffff">
-	Registration page </marquee>
+
 <head>
 
 <title>User registration details</title>
@@ -38,9 +37,9 @@
 		}
 	</script>
 
-	<h1 style="text-align: left;">User Registration Form</h1>
+	<h1 style="text-align: center;">User Registration Form</h1>
 
-	<table align="left">
+	<table align="center">
 		<form:form commandName="user" name="myform"
 			action="../../springmvc/user/add" method="post"
 			onsubmit="return validateform()">

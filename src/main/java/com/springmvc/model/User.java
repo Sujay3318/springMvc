@@ -11,7 +11,11 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.validator.constraints.NotEmpty;
-
+/**
+ * 
+ * @author User
+ *
+ */
 @Entity
 @Table(name = "user")
 @DynamicUpdate

@@ -16,16 +16,16 @@
 
 			<tr>
 				<td><label>Enter Registered Email:</label></td>
-				<td><form:input path="emailId"></form:input></td>
+				<td><form:input path="emailId" required="required"></form:input></td>
 			</tr>
 			<tr>
 				<td><label>Otp:</label></td>
-				<td><form:input path="otp"></form:input></td>
+				<td><form:input path="otp" required="required"></form:input></td>
 			</tr>
 
 			<tr>
 				<td><label>password:</label></td>
-				<td><form:input path="password" type="password"></form:input></td>
+				<td><form:input path="password" type="password" required="required"></form:input></td>
 			</tr>
 
 			<tr>

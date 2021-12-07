@@ -29,17 +29,25 @@ import org.springframework.web.servlet.ModelAndView;
 import com.springmvc.model.User;
 import com.springmvc.service.UserService;
 
-
+/**
+ * 
+ * @author User
+ *
+ */
 @Controller
 @RequestMapping(value = "/user")
 public class PasswordChangeController {
 
 	@Autowired
 	org.hibernate.SessionFactory SessionFactory;
-	
+
 	@Autowired
 	UserService userService;
 
+	/**
+	 * 
+	 * @return
+	 */
 	@GetMapping("/password/reset")
 	public ModelAndView loadPasswordResetPage() {
 		ModelAndView model = new ModelAndView();
@@ -49,58 +57,24 @@ public class PasswordChangeController {
 		return model;
 	}
 
+	/**
+	 * 
+	 * @param user
+	 * @param request
+	 * @return
+	 * @throws Exception
+	 */
 	@PostMapping("/password/check")
 	public ModelAndView loadPasswordUpdatePage(@ModelAttribute User user, HttpServletRequest request) throws Exception {
-		Integer result=userService.passAndEmailChecking(user);
+		Integer result = userService.passAndEmailChecking(user);
 		ModelAndView model = new ModelAndView();
-		if(result==0)
-		{
+		if (result == 0) {
 
 			model.setViewName("invalidemailandotp");
-		}else
-		{
-		model.addObject("name",user.getEmailId());
-		model.setViewName("passwordupdated");
+		} else {
+			model.addObject("name", user.getEmailId());
+			model.setViewName("passwordupdated");
 		}
 		return model;
 	}
-	
-//	
-//	
-//	@PersistenceContext
-//	EntityManager em;
-//	@PostMapping("/update")
-//	public ModelAndView updatethepassword(HttpServletRequest request) throws Exception {
-//		ModelAndView model = new ModelAndView();
-//		String newpass=request.getParameter("pass");
-//		//https://stackoverflow.com/questions/25817997/hibernate-execute-update-with-criteria
-//		//EntityManager  em = this.entityManagerContainer().get( User.class );
-//		//https://www.baeldung.com/hibernate-entitymanager
-////		CriteriaBuilder cb = this.em.getCriteriaBuilder();
-////		// create update
-////		CriteriaUpdate<User> update = cb.createCriteriaUpdate(User.class);
-////		// set the root class
-////		Root e = update.from(User.class);
-////		// set update and where clause
-////		update.set("password", newpass);
-////		
-////		// perform update
-////		this.em.createQuery(update).executeUpdate();
-//		String emailId="sujay@gmail.com";
-//		Session session = SessionFactory.openSession();
-//		Transaction t = session.beginTransaction();
-//		Query query = session.createQuery("from User where emailId = :emailId");
-//		query.setParameter("password",newpass );
-//		Optional<User> user = query.uniqueResultOptional();
-//		t.commit();
-//		session.close();
-//		System.out.println("updation sucessful");
-//		model.setViewName("passwordchange");
-//		return model;
-//		
-//
-//	}
-//	
-		
-	}
-
+}

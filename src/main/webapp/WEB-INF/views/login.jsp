@@ -33,20 +33,21 @@
 
 <div align='center'>
 	<h2>Login </h2>
+	
 	<form:form   commandName="user"
 		action="../../springmvc/user/login/check" method="post"
 		onsubmit="return validateform()">
 		<table>
 			<tr>
 				<td><label class="label">Email:</label></td>
-				<td><form:input path="emailId"></form:input></td>
+				<td><form:input path="emailId" required="required"></form:input></td>
 			</tr>
 			<tr>
 				<td><label class="label">password</label></td>
-				<td><form:input type="password" path="password"></form:input></td>
+				<td><form:input type="password" path="password" required="required"></form:input></td>
 			</tr>
 				<tr>
-					<td><input type="submit" value="submit" /></td>
+					<td><input type="submit" value="submit" required="required"/></td>
 				</tr>
 
 				<tr>
